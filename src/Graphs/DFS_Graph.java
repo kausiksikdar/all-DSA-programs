@@ -31,7 +31,7 @@ public class DFS_Graph {
         }
         int[] visited=new int[V];
         ArrayList<Integer> ans = new ArrayList<>();
-        DFSGraph(adj[0].get(0),adj,visited);
+        DFSGraph(adj[0].get(0),adj,visited                                );
 
     }
 }

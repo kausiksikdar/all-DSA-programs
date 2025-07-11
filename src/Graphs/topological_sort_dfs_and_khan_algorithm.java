@@ -1,5 +1,6 @@
 package Graphs;
 
+import javax.crypto.spec.PSource;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -86,11 +87,15 @@ public class topological_sort_dfs_and_khan_algorithm {
         return adjacencyList;
     }
     public static void main(String[] args) {
-        int V=3;
+        int V=7;
         int[][] edges = {
-                {1,1,0},
-                {0,1,1},
-                {0,0,1}
+                {1,1,1,0,0,0,0},
+                {0,1,0,1,1,0,0},
+                {0,0,1,0,0,0,0},
+                {0,0,0,1,1,0,0}                                                                  ,
+                {0,0,0,0,1,0,0},
+                {0,0,0,0,1,1,1},
+                {0,0,0,1,0,0,1}
         };
         ArrayList<ArrayList<Integer>> List = adjacencyList(V,edges);
         System.out.println(topoSortUsingDFS(V,List));
