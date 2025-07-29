@@ -2,7 +2,7 @@ package Graphs;
 
 import java.util.*;
 
-public class  prims_algo{
+public class prims_algo_MST {
 
     static class Edge {
         int weight, node, parent;

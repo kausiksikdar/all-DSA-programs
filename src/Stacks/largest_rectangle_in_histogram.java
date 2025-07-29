@@ -1,3 +1,5 @@
+package Stacks;
+
 import java.util.Stack;
 
 public class largest_rectangle_in_histogram {

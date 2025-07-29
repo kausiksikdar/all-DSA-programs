@@ -1,4 +1,8 @@
 package Graphs;
+
+/*
+    Bipartite Graph -> Color the graph with two colors such that any two adjacent node don't get the same color
+*/
 import java.util.*;public class Bipartite_graph {
     static List<List<Integer>> createAdjacency(int[][] edges, int V)
     {

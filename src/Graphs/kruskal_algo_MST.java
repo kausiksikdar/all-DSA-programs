@@ -38,7 +38,7 @@ class DisjointSet
         }
     }
 }
-public class kruskal_algo {
+public class kruskal_algo_MST {
     static class Edge {
         int u, v, wt;
 
@@ -52,7 +52,6 @@ public class kruskal_algo {
     {
         DisjointSet ds = new DisjointSet(V);
         PriorityQueue<Edge> pq = new PriorityQueue<Edge>((a,b)->a.wt-b.wt);
-        int[] tree = new int[V];
 
         for(int i=0;i<adjList.size();i++)
         {
@@ -62,6 +61,7 @@ public class kruskal_algo {
             }
         }
 
+        ArrayList<ArrayList<Integer>> Edges = new ArrayList<>();
         int totalCost = 0;
         int totalEdges = 0;
         while(!pq.isEmpty())
@@ -71,17 +71,25 @@ public class kruskal_algo {
             int v = top.v;
             int wt = top.wt;
 
+
             if(ds.findParent(u) != ds.findParent(v))
             {
-                tree[v] = u;
-                totalCost+=wt;
-                ds.unionByRank(u,v);
+                //Constructing the minimum spanning tree
+                ArrayList<Integer> edgeInfo = new ArrayList<>();
+                edgeInfo.add(u);
+                edgeInfo.add(v);
+                Collections.sort(edgeInfo);
+
+                if (!Edges.contains(edgeInfo))
+                    Edges.add(edgeInfo);
+
+                totalCost+=wt; //Add the cost to the minimum cost
+                ds.unionByRank(u,v); //Merging both the edges under the same parent
             }
             if(totalEdges == V-1)
                 break;
         }
-        for(int i=0;i<tree.length;i++)
-            System.out.println("Edges: " + i + " " + tree[i]);
+        System.out.println("MST : " + Edges);
 
         return totalCost;
     }
