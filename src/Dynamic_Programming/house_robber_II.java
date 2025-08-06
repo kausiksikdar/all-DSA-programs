@@ -17,7 +17,7 @@ public class house_robber_II {
         return second;
     }
     public static void main(String[] args) {
-        int[] houses = {1,12,13,1};
+        int[] houses = {1,15,13,1};
         int n = houses.length;
         //As the houses are in a circular manner, the 1st and last houses are adjacent so at a time we can't steal from 1st and last house simultaneously
         //So first we exclude the last house and include the first house and calculate and 2nd time we exclude the first house and include the last house and calculate
