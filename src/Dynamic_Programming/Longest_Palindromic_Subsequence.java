@@ -1,7 +1,5 @@
 package Dynamic_Programming;
 
-import java.util.SplittableRandom;
-
 public class Longest_Palindromic_Subsequence {
     static int LCSSpaceOptimized(String s1, String s2) {
         int n = s1.length(), m = s2.length();

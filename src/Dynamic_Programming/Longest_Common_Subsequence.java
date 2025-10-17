@@ -1,9 +1,12 @@
 package Dynamic_Programming;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 /*
     LCS -> Longest Common Subsequence, is the longest common subsequence between two strings
-    find the LCS between two Strings
+    find the length of LCS between two Strings
 */
 public class Longest_Common_Subsequence {
     static int LCSTopDown(String s1, String s2, int itr1, int itr2, int[][] dp)
@@ -36,8 +39,46 @@ public class Longest_Common_Subsequence {
                 else
                     dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
             }
+        for (int i=0;i<=n;i++)
+        {
+            for (int j=0;j<=m;j++)
+            {
+                System.out.print(dp[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        List<String> allSub = new ArrayList<>();
+        printAllLCS(s1,s2,dp,n,m,allSub,new StringBuilder());
+        System.out.println(allSub);
+
         return dp[n][m];
     }
+    static void printAllLCS(String s1, String s2, int[][] dp, int i, int j,
+                            List<String> allSub, StringBuilder str) {
+        if (i == 0 || j == 0) {
+            allSub.add(str.reverse().toString());  // add reversed version
+            str.reverse(); // reverse back to original before returning
+            return;
+        }
+
+        if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+            str.append(s1.charAt(i - 1));
+            printAllLCS(s1, s2, dp, i - 1, j - 1, allSub, str);
+            str.deleteCharAt(str.length() - 1); // backtrack
+        } else {
+            if (dp[i - 1][j] > dp[i][j - 1]) {
+                printAllLCS(s1, s2, dp, i - 1, j, allSub, str);
+            } else if (dp[i - 1][j] < dp[i][j - 1]) {
+                printAllLCS(s1, s2, dp, i, j - 1, allSub, str);
+            } else {
+                // explore both ways for tie
+                printAllLCS(s1, s2, dp, i - 1, j, allSub, new StringBuilder(str));
+                printAllLCS(s1, s2, dp, i, j - 1, allSub, new StringBuilder(str));
+            }
+        }
+    }
+
     static int LCSSpaceOptimized(String s1, String s2) {
         int n = s1.length(), m = s2.length();
         int[] dp = new int[m + 1];
@@ -59,15 +100,15 @@ public class Longest_Common_Subsequence {
     }
 
     public static void main(String[] args) {
-        String s1 = "ABCBA", s2 = "ABCBCBA";
+        String s1 = "rabbit", s2 = "rabbbit";
         int n = s1.length(), m = s2.length();
         int[][] dp = new int[n][m];
 
         for (int i=0;i<n;i++)
             Arrays.fill(dp[i],-1);
 
-        System.out.println(LCSTopDown(s1,s2,n-1,m-1, dp));
+//        System.out.println(LCSTopDown(s1,s2,n-1,m-1, dp));
         System.out.println(LCSBottomUP(s1,s2));
-        System.out.println(LCSSpaceOptimized(s1,s2));
+//        System.out.println(LCSSpaceOptimized(s1,s2));
     }
 }

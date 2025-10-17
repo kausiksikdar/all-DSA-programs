@@ -80,8 +80,7 @@ public class kruskal_algo_MST {
                 edgeInfo.add(v);
                 Collections.sort(edgeInfo);
 
-                if (!Edges.contains(edgeInfo))
-                    Edges.add(edgeInfo);
+                Edges.add(edgeInfo);
 
                 totalCost+=wt; //Add the cost to the minimum cost
                 ds.unionByRank(u,v); //Merging both the edges under the same parent

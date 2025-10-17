@@ -1,10 +1,10 @@
 package Graphs;
 
-import javax.crypto.spec.PSource;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+/*
+* Topological Sort -> is a Sorting technique in which, we sort the nodes on the basis of their priority
+* Very efficient when it comes to prioritise nodes to perform some specific operation */
+
+import java.util.*;
 
 public class topological_sort_dfs_and_khan_algorithm {
     static void DFS(int node, ArrayList<ArrayList<Integer>> List, Stack<Integer> stack, boolean[] visited)
@@ -98,6 +98,7 @@ public class topological_sort_dfs_and_khan_algorithm {
                 {0,0,0,1,0,0,1}
         };
         ArrayList<ArrayList<Integer>> List = adjacencyList(V,edges);
+        System.out.println(List);
         System.out.println(topoSortUsingDFS(V,List));
         System.out.println(topoSortUsingBFS(V,List));
     }
